@@ -4,8 +4,8 @@ const prepareInput = (rawInput) => rawInput
 
 // TODO: Use a regex here
 const input = prepareInput(readInput()).split('\n').map(line => ({
-  minTimes: line.split('-')[0],
-  maxTimes: line.split('-')[1].split(' ')[0],
+  firstNum: line.split('-')[0],
+  secondNum: line.split('-')[1].split(' ')[0],
   character: line.split(' ')[1][0],
   password: line.split(' ')[2]
 }))
@@ -14,7 +14,7 @@ const goA = (input) => {
   let matchingPasswords = 0
   for (const line of input) {
     let count = 0
-    const { minTimes, maxTimes, character, password } = line
+    const { firstNum: minTimes, secondNum: maxTimes, character, password } = line
     for (const char of password) {
       if (char === character) count++
     }
@@ -30,7 +30,7 @@ const goB = (input) => {
   let matchingPasswords = 0
   for (const line of input) {
     let matchingPositions = 0
-    const { minTimes: firstPos, maxTimes: secondPos, character, password } = line
+    const { firstNum: firstPos, secondNum: secondPos, character, password } = line
     if (password[firstPos - 1] === character) matchingPositions++
     if (password[secondPos - 1] === character) matchingPositions++
     if (matchingPositions === 1) matchingPasswords++

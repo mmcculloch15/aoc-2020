@@ -1,4 +1,4 @@
-# Advent of Code 2019 starter for JS
+# Advent of Code 2020 starter for JS
 
 ## Intro
 

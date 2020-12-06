@@ -11,5 +11,6 @@ if (!days.includes(day)) {
 }
 
 spawn('nodemon', [`src/${day}/index.js`], {
-  stdio: 'inherit'
+  stdio: 'inherit',
+  shell: true
 })

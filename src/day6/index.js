@@ -12,12 +12,12 @@ const goA = (input) => {
   const questionsAnswered = new Set()
 
   for (const line of input) {
-    if (line === '\r') {
+    if (line === '') {
       questionTotal += questionsAnswered.size
       questionsAnswered.clear()
     } else {
       for (const char of line) {
-        if (char !== '\r') questionsAnswered.add(char)
+        questionsAnswered.add(char)
       }
     }
   }
@@ -26,7 +26,36 @@ const goA = (input) => {
 }
 
 const goB = (input) => {
+  let questionTotal = 0
+  let groupSize = 0
+  let groupResponses = {}
 
+  const checkGroupAnswers = (responses, size) => {
+    let valid = 0
+    for (const q in responses) {
+      if (responses[q] === size) valid++
+    }
+    return valid
+  }
+
+  for (const line of input) {
+    if (line === '') {
+      questionTotal += checkGroupAnswers(groupResponses, groupSize)
+      groupResponses = {}
+      groupSize = 0
+    } else {
+      groupSize++
+      for (const char of line) {
+        if (!groupResponses[char]) {
+          groupResponses[char] = 1
+        } else {
+          groupResponses[char]++
+        }
+      }
+    }
+  }
+  questionTotal += checkGroupAnswers(groupResponses, groupSize)
+  return questionTotal
 }
 
 console.time('Time')

@@ -28,7 +28,7 @@ const exhaustivelyModifyCommands = (commandList, modifiedCommand) => {
 
     while (isRunning) {
       commandCount++
-      processCommand(input)
+      processCommand()
       if (index === input.length) return true
       if (commandCount === 500) {
         // change the failed modified input back
@@ -41,7 +41,7 @@ const exhaustivelyModifyCommands = (commandList, modifiedCommand) => {
 }
 
 // run a single command and update the global index and accumulator variables as needed
-const processCommand = (input) => {
+const processCommand = () => {
   if (!input[index]) {
     return false
   }
@@ -97,9 +97,9 @@ const goB = (input) => {
 }
 
 console.time('Time')
-// const resultA = goA(input)
+const resultA = goA(input)
 const resultB = goB(input)
 console.timeEnd('Time')
 
-// console.log('Solution to part 1:', resultA)
+console.log('Solution to part 1:', resultA)
 console.log('Solution to part 2:', resultB)

@@ -34,11 +34,9 @@ const generateRating = (input, type) => {
       if (type === 'oxygen') workingInput = workingInput.filter((byte) => byte[i] === '0')
       else if (type === 'CO2') workingInput = workingInput.filter((byte) => byte[i] === '1')
     }
-    console.log('AFTER FILTERING', workingInput)
 
     //if we only have one digit left, we're done
     if (workingInput.length === 1) {
-      console.log(workingInput[0])
       rating = parseInt(workingInput[0], 2)
       break
     }
